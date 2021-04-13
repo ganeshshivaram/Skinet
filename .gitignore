@@ -1,0 +1,9 @@
+.vs/Skinet/v16/.suo
+.vscode/
+.vs/
+API/bin/
+API/obj/
+Core/bin/
+Core/obj/
+Infrastructure/bin/
+Infrastructure/obj/

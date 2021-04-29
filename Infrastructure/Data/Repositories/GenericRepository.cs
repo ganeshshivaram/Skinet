@@ -25,11 +25,6 @@ namespace Infrastructure.Data.Repositories
             return await ApplySpecification(specification).FirstOrDefaultAsync();
         }
 
-        private IQueryable<T> ApplySpecification(ISpecification<T> spec)
-        {
-            return SpecificationEvaluator<T>.GetQuery(_context.Set<T>().AsQueryable(), spec);
-        }
-
         public async Task<IReadOnlyList<T>> ListAllAsync(ISpecification<T> specification)
         {
             return await ApplySpecification(specification).ToListAsync();
@@ -38,6 +33,17 @@ namespace Infrastructure.Data.Repositories
         public async Task<IReadOnlyList<T>> ListAllAsync()
         {
             return await _context.Set<T>().ToListAsync();
+        }
+
+        public async Task<int> GetCountAsync(ISpecification<T> specification)
+        {
+            return await ApplySpecification(specification).CountAsync();
+        }
+
+
+        private IQueryable<T> ApplySpecification(ISpecification<T> spec)
+        {
+            return SpecificationEvaluator<T>.GetQuery(_context.Set<T>().AsQueryable(), spec);
         }
     }
 }

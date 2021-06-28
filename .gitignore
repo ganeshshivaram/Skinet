@@ -7,3 +7,5 @@ Core/bin/
 Core/obj/
 Infrastructure/bin/
 Infrastructure/obj/
+API/skinet.db-shm
+API/skinet.db-wal

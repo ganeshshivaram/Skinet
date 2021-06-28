@@ -46,9 +46,6 @@ namespace API.Controllers
             var products = await _productRepo.ListAllAsync(specification);
             var productsToReturn = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products);
 
-            if (!productsToReturn.Any())
-                return NotFound();
-
             return Ok(new Pagination<ProductToReturnDto>(productParams.PageIndex, productParams.PageSize, count, productsToReturn));
         }
 

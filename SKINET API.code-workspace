@@ -1,0 +1,13 @@
+{
+  "folders": [
+    {
+      "path": "API"
+    },
+    {
+      "path": "Core"
+    },
+    {
+      "path": "Infrastructure"
+    }
+  ]
+}

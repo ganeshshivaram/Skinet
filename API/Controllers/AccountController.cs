@@ -98,16 +98,21 @@ namespace API.Controllers
 
 
         [HttpPost("register")]
-        public async Task<ActionResult<UserDto>> Register(RegisterDto loginDto)
+        public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
+            if (CheckEmailExists(registerDto.Email).Result.Value)
+            {
+                return new BadRequestObjectResult(new ApiValidationError()
+                { Errors = new[] { "Email address already in use" } });
+            }
             var user = new AppUser
             {
-                UserName = loginDto.UserName,
-                Email = loginDto.Email,
-                DisplayName = loginDto.DisplayName
+                UserName = registerDto.UserName,
+                Email = registerDto.Email,
+                DisplayName = registerDto.DisplayName
             };
 
-            var result = await _userManager.CreateAsync(user, loginDto.Password);
+            var result = await _userManager.CreateAsync(user, registerDto.Password);
 
             if (!result.Succeeded)
             {

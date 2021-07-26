@@ -68,6 +68,12 @@ export class BasketService {
     return basket;
   }
 
+  clearBasket() {
+    let basket = this.getCurrentBasketValue();
+    this.deleteBasket(basket);
+    localStorage.removeItem('basket_id');
+  }
+
   addOrUpdateItems(
     items: IBasketItem[],
     itemToAdd: IBasketItem,
